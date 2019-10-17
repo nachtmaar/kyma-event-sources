@@ -1,5 +1,6 @@
-# Binary
+# Binaries
 /mqttsource-controller
+/bin/
 
 # Dependencies
 /vendor/

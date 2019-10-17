@@ -566,6 +566,28 @@
 
 [[projects]]
   branch = "master"
+  digest = "1:7da8a34bbd02af1e729c8616187dfc2aaa36eed0db3c5058c0390dfb6b56129c"
+  name = "golang.org/x/tools"
+  packages = [
+    "go/ast/astutil",
+    "go/gcexportdata",
+    "go/internal/gcimporter",
+    "go/internal/packagesdriver",
+    "go/packages",
+    "go/types/typeutil",
+    "imports",
+    "internal/fastwalk",
+    "internal/gopathwalk",
+    "internal/imports",
+    "internal/module",
+    "internal/semver",
+    "internal/span",
+  ]
+  pruneopts = "UT"
+  revision = "846f856e7d713bd2e8112adf3b8649d7bb111cca"
+
+[[projects]]
+  branch = "master"
   digest = "1:debb70916843d90c7d50dd8b420a9c126e1015d7cc24548e74273c16d5af0455"
   name = "google.golang.org/api"
   packages = [
@@ -802,10 +824,11 @@
   version = "kubernetes-1.12.9"
 
 [[projects]]
-  digest = "1:00ff4319773c6bfd115f6cb5ea042538e02deff7b747a2a6338672d204274adf"
+  digest = "1:51a9a890ffa1cb20e9a092e1134963c22edfa2d3dfd662fe588023ed6128d87c"
   name = "k8s.io/client-go"
   packages = [
     "discovery",
+    "discovery/fake",
     "dynamic",
     "informers",
     "informers/admissionregistration",
@@ -918,6 +941,7 @@
     "plugin/pkg/client/auth/exec",
     "rest",
     "rest/watch",
+    "testing",
     "tools/auth",
     "tools/cache",
     "tools/clientcmd",
@@ -941,6 +965,56 @@
   pruneopts = "UT"
   revision = "4f3abb12cae2d6817e1b6d72d9cbc3d3a6ddf965"
   version = "kubernetes-1.12.9"
+
+[[projects]]
+  digest = "1:aa0d5fbf4eb99ae4cfaf645d4ffdef921777a5b761a28ee0a2cd5e9754ba130e"
+  name = "k8s.io/code-generator"
+  packages = [
+    "cmd/client-gen",
+    "cmd/client-gen/args",
+    "cmd/client-gen/generators",
+    "cmd/client-gen/generators/fake",
+    "cmd/client-gen/generators/scheme",
+    "cmd/client-gen/generators/util",
+    "cmd/client-gen/path",
+    "cmd/client-gen/types",
+    "cmd/deepcopy-gen",
+    "cmd/deepcopy-gen/args",
+    "cmd/informer-gen",
+    "cmd/informer-gen/args",
+    "cmd/informer-gen/generators",
+    "cmd/lister-gen",
+    "cmd/lister-gen/args",
+    "cmd/lister-gen/generators",
+    "pkg/util",
+  ]
+  pruneopts = "UT"
+  revision = "b1289fc74931d4b6b04bd1a259acfc88a2cb0a66"
+  version = "kubernetes-1.12.9"
+
+[[projects]]
+  branch = "master"
+  digest = "1:5d85e7488a6829643e52693cd548582a56858bfe24f9444d2f1ac2b69f3f5c36"
+  name = "k8s.io/gengo"
+  packages = [
+    "args",
+    "examples/deepcopy-gen/generators",
+    "examples/set-gen/sets",
+    "generator",
+    "namer",
+    "parser",
+    "types",
+  ]
+  pruneopts = "UT"
+  revision = "7fa3014cb28f99ce2d9e803bcd3efa7edd4effa9"
+
+[[projects]]
+  digest = "1:93e82f25d75aba18436ad1ac042cb49493f096011f2541075721ed6f9e05c044"
+  name = "k8s.io/klog"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "2ca9ad30301bf30a8a6e0fa2110db6b8df699a91"
+  version = "v1.0.0"
 
 [[projects]]
   branch = "master"
@@ -976,7 +1050,7 @@
 
 [[projects]]
   branch = "release-0.9"
-  digest = "1:70d77ecee957cb15bf25458c366d514747215e3c897d8857e3800d30a84693de"
+  digest = "1:f083412cb9b993bbbfb2f3841ac2f1d8d432594f47228ff2851ad070940de2af"
   name = "knative.dev/pkg"
   packages = [
     "apis",
@@ -987,6 +1061,9 @@
     "apis/v1alpha1",
     "changeset",
     "client/injection/kube/client",
+    "codegen/cmd/injection-gen",
+    "codegen/cmd/injection-gen/args",
+    "codegen/cmd/injection-gen/generators",
     "configmap",
     "controller",
     "injection",
@@ -1010,10 +1087,33 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
+    "k8s.io/apimachinery/pkg/api/errors",
+    "k8s.io/apimachinery/pkg/apis/meta/v1",
+    "k8s.io/apimachinery/pkg/labels",
+    "k8s.io/apimachinery/pkg/runtime",
+    "k8s.io/apimachinery/pkg/runtime/schema",
+    "k8s.io/apimachinery/pkg/runtime/serializer",
+    "k8s.io/apimachinery/pkg/types",
+    "k8s.io/apimachinery/pkg/util/runtime",
+    "k8s.io/apimachinery/pkg/watch",
+    "k8s.io/client-go/discovery",
+    "k8s.io/client-go/discovery/fake",
+    "k8s.io/client-go/rest",
+    "k8s.io/client-go/testing",
+    "k8s.io/client-go/tools/cache",
+    "k8s.io/client-go/util/flowcontrol",
+    "k8s.io/code-generator/cmd/client-gen",
+    "k8s.io/code-generator/cmd/deepcopy-gen",
+    "k8s.io/code-generator/cmd/informer-gen",
+    "k8s.io/code-generator/cmd/lister-gen",
     "knative.dev/eventing/pkg/reconciler",
+    "knative.dev/pkg/apis/duck/v1beta1",
+    "knative.dev/pkg/codegen/cmd/injection-gen",
     "knative.dev/pkg/configmap",
     "knative.dev/pkg/controller",
+    "knative.dev/pkg/injection",
     "knative.dev/pkg/injection/sharedmain",
+    "knative.dev/pkg/logging",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1

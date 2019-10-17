@@ -1,3 +1,11 @@
+required = [
+  "k8s.io/code-generator/cmd/deepcopy-gen",
+  "k8s.io/code-generator/cmd/client-gen",
+  "k8s.io/code-generator/cmd/lister-gen",
+  "k8s.io/code-generator/cmd/informer-gen",
+  "knative.dev/pkg/codegen/cmd/injection-gen",
+]
+
 [prune]
   go-tests = true
   unused-packages = true
