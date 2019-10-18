@@ -16,8 +16,12 @@ limitations under the License.
 
 package main
 
-import "knative.dev/pkg/injection/sharedmain"
+import (
+	"knative.dev/pkg/injection/sharedmain"
+
+	"github.com/antoineco/mqtt-event-source/controller"
+)
 
 func main() {
-	sharedmain.Main("mqtt_source", NewController)
+	sharedmain.Main("mqtt_source", controller.New)
 }
