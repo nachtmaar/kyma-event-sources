@@ -16,20 +16,20 @@ PKG := github.com/antoineco/mqtt-event-source
 
 .PHONY: all clean
 
-bin := mqttsource-controller
+controller := mqttsource-controller
 
-all: clean $(bin)
+all: clean $(controller)
 
-$(bin):
+$(controller):
 	@echo "+ Building $@"
-	@CGO_ENABLED=0 go build -o $(bin) \
+	@CGO_ENABLED=0 go build -o $(controller) \
 		$(GOBUILD_FLAGS) \
-		$(PKG)
+		$(PKG)/cmd/$(controller)
 
 clean:
 	@echo "+ Cleaning"
-	rm -f $(bin)
-	@go clean -x -i $(PKG)
+	rm -f $(controller-bin)
+	@go clean -x -i $(PKG)/cmd/$(controller)
 
 vendor: Gopkg.lock
 	@echo '+ Pulling vendored dependencies'
