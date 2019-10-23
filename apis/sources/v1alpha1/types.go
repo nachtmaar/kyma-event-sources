@@ -53,4 +53,7 @@ type MQTTSourceStatus struct {
 	// * ObservedGeneration - the 'Generation' of the Service that was last processed by the controller.
 	// * Conditions - the latest available observations of a resource's current state.
 	duckv1beta1.Status `json:",inline"`
+
+	// URI of the events sink
+	SinkURI string
 }

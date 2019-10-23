@@ -13,9 +13,6 @@
 # limitations under the License.
 
 apiVersion: v1
-kind: ConfigMap
+kind: Namespace
 metadata:
-  name: config-observability
-data:
-  # See https://github.com/knative/serving/blob/master/config/config-observability.yaml for details
-  metrics.backend: prometheus
+  name: mqtt-source

@@ -195,6 +195,13 @@
   revision = "6f77996f0c42f7b84e5a2b252227263f93432e9b"
 
 [[projects]]
+  digest = "1:10aa62acd56f635de190110a836aa261b3774e697b2b6a7af27d8263cf856d47"
+  name = "github.com/google/go-containerregistry"
+  packages = ["pkg/name"]
+  pruneopts = "UT"
+  revision = "b02d448a3705facf11018efff34f1d2830be5724"
+
+[[projects]]
   digest = "1:a6181aca1fd5e27103f9a920876f29ac72854df7345a39f3b01e61c8c94cc8af"
   name = "github.com/google/gofuzz"
   packages = ["."]
@@ -480,13 +487,14 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:2ce67db9864088dee35dab5967f041d2b4ae1c7440dabb44542c1847933fd872"
+  digest = "1:dfcbf5537a481546b3c4d48c1f614b4272546010ed678703684dadda970da352"
   name = "golang.org/x/net"
   packages = [
     "context",
     "context/ctxhttp",
     "http/httpguts",
     "http2",
+    "http2/h2c",
     "http2/hpack",
     "idna",
     "internal/timeseries",
@@ -824,7 +832,7 @@
   version = "kubernetes-1.12.9"
 
 [[projects]]
-  digest = "1:51a9a890ffa1cb20e9a092e1134963c22edfa2d3dfd662fe588023ed6128d87c"
+  digest = "1:cc32773e8e91cc477c1a675cb61d600e146525e8f7fa9e6db88c9184f7f31f8d"
   name = "k8s.io/client-go"
   packages = [
     "discovery",
@@ -939,9 +947,11 @@
     "pkg/apis/clientauthentication/v1beta1",
     "pkg/version",
     "plugin/pkg/client/auth/exec",
+    "plugin/pkg/client/auth/gcp",
     "rest",
     "rest/watch",
     "testing",
+    "third_party/forked/golang/template",
     "tools/auth",
     "tools/cache",
     "tools/clientcmd",
@@ -959,6 +969,7 @@
     "util/flowcontrol",
     "util/homedir",
     "util/integer",
+    "util/jsonpath",
     "util/retry",
     "util/workqueue",
   ]
@@ -1025,7 +1036,7 @@
   revision = "0270cf2f1c1d995d34b36019a6f65d58e6e33ad4"
 
 [[projects]]
-  digest = "1:dbcb198c301689f6df048525358775a4430006c6af6d7c00404fced05dcbdb8b"
+  digest = "1:20725416132ff042d150002043a4ed6e511eea3e448ff2caef0e38b79fb9ed6c"
   name = "knative.dev/eventing"
   packages = [
     "pkg/apis/duck",
@@ -1042,7 +1053,11 @@
     "pkg/client/clientset/versioned/typed/messaging/v1alpha1",
     "pkg/client/clientset/versioned/typed/sources/v1alpha1",
     "pkg/client/injection/client",
+    "pkg/duck",
+    "pkg/logging",
     "pkg/reconciler",
+    "pkg/reconciler/names",
+    "pkg/utils",
   ]
   pruneopts = "UT"
   revision = "a1a098150e5b624573c391563cd13f1703dcc10d"
@@ -1050,7 +1065,7 @@
 
 [[projects]]
   branch = "release-0.9"
-  digest = "1:f083412cb9b993bbbfb2f3841ac2f1d8d432594f47228ff2851ad070940de2af"
+  digest = "1:ca8df046132c1256cc73a8260ecac95dd1251951ee4fa8b2b99719185cd9b73a"
   name = "knative.dev/pkg"
   packages = [
     "apis",
@@ -1075,13 +1090,62 @@
     "logging/logkey",
     "metrics",
     "metrics/metricskey",
+    "network",
     "profiling",
+    "ptr",
     "signals",
     "system",
+    "tracker",
     "webhook",
   ]
   pruneopts = "UT"
   revision = "74659889c421b26b9a416fd203f5a8d3e602bfb2"
+
+[[projects]]
+  digest = "1:a7ca4b88452d21eb3276f1fc1dddcb4e8dd2cb624b578ed0601ce236308a3e4f"
+  name = "knative.dev/serving"
+  packages = [
+    "pkg/apis/autoscaling",
+    "pkg/apis/autoscaling/v1alpha1",
+    "pkg/apis/config",
+    "pkg/apis/networking",
+    "pkg/apis/networking/v1alpha1",
+    "pkg/apis/serving",
+    "pkg/apis/serving/v1",
+    "pkg/apis/serving/v1alpha1",
+    "pkg/apis/serving/v1beta1",
+    "pkg/client/clientset/versioned",
+    "pkg/client/clientset/versioned/scheme",
+    "pkg/client/clientset/versioned/typed/autoscaling/v1alpha1",
+    "pkg/client/clientset/versioned/typed/networking/v1alpha1",
+    "pkg/client/clientset/versioned/typed/serving/v1",
+    "pkg/client/clientset/versioned/typed/serving/v1alpha1",
+    "pkg/client/clientset/versioned/typed/serving/v1beta1",
+    "pkg/client/informers/externalversions",
+    "pkg/client/informers/externalversions/autoscaling",
+    "pkg/client/informers/externalversions/autoscaling/v1alpha1",
+    "pkg/client/informers/externalversions/internalinterfaces",
+    "pkg/client/informers/externalversions/networking",
+    "pkg/client/informers/externalversions/networking/v1alpha1",
+    "pkg/client/informers/externalversions/serving",
+    "pkg/client/informers/externalversions/serving/v1",
+    "pkg/client/informers/externalversions/serving/v1alpha1",
+    "pkg/client/informers/externalversions/serving/v1beta1",
+    "pkg/client/injection/client",
+    "pkg/client/injection/informers/factory",
+    "pkg/client/injection/informers/serving/v1/service",
+    "pkg/client/listers/autoscaling/v1alpha1",
+    "pkg/client/listers/networking/v1alpha1",
+    "pkg/client/listers/serving/v1",
+    "pkg/client/listers/serving/v1alpha1",
+    "pkg/client/listers/serving/v1beta1",
+    "pkg/gc",
+    "pkg/network",
+    "pkg/reconciler/route/config",
+  ]
+  pruneopts = "UT"
+  revision = "b066e90ccd6f091e0faf65a759f3ce789d373457"
+  version = "v0.9.0"
 
 [solve-meta]
   analyzer-name = "dep"
@@ -1089,8 +1153,10 @@
   input-imports = [
     "github.com/pkg/errors",
     "go.uber.org/zap",
+    "k8s.io/api/core/v1",
     "k8s.io/apimachinery/pkg/api/errors",
     "k8s.io/apimachinery/pkg/apis/meta/v1",
+    "k8s.io/apimachinery/pkg/conversion",
     "k8s.io/apimachinery/pkg/labels",
     "k8s.io/apimachinery/pkg/runtime",
     "k8s.io/apimachinery/pkg/runtime/schema",
@@ -1100,6 +1166,7 @@
     "k8s.io/apimachinery/pkg/watch",
     "k8s.io/client-go/discovery",
     "k8s.io/client-go/discovery/fake",
+    "k8s.io/client-go/plugin/pkg/client/auth/gcp",
     "k8s.io/client-go/rest",
     "k8s.io/client-go/testing",
     "k8s.io/client-go/tools/cache",
@@ -1108,7 +1175,9 @@
     "k8s.io/code-generator/cmd/deepcopy-gen",
     "k8s.io/code-generator/cmd/informer-gen",
     "k8s.io/code-generator/cmd/lister-gen",
+    "knative.dev/eventing/pkg/duck",
     "knative.dev/eventing/pkg/reconciler",
+    "knative.dev/pkg/apis",
     "knative.dev/pkg/apis/duck/v1beta1",
     "knative.dev/pkg/codegen/cmd/injection-gen",
     "knative.dev/pkg/configmap",
@@ -1116,6 +1185,12 @@
     "knative.dev/pkg/injection",
     "knative.dev/pkg/injection/sharedmain",
     "knative.dev/pkg/logging",
+    "knative.dev/serving/pkg/apis/serving",
+    "knative.dev/serving/pkg/apis/serving/v1",
+    "knative.dev/serving/pkg/client/clientset/versioned/typed/serving/v1",
+    "knative.dev/serving/pkg/client/injection/client",
+    "knative.dev/serving/pkg/client/injection/informers/serving/v1/service",
+    "knative.dev/serving/pkg/client/listers/serving/v1",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1

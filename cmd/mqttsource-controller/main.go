@@ -17,6 +17,9 @@ limitations under the License.
 package main
 
 import (
+	// allow client authentication against GKE clusters
+	_ "k8s.io/client-go/plugin/pkg/client/auth/gcp"
+
 	"knative.dev/pkg/injection/sharedmain"
 
 	"github.com/antoineco/mqtt-event-source/controller"
