@@ -1,5 +1,6 @@
 # Binaries
 /mqttsource-controller
+/mqttsource-adapter
 /bin/
 
 # Dependencies
@@ -18,6 +19,8 @@
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 
-# JetBrains
+# Editors and IDEs
 /.idea/
-
+*~
+*.swp
+*.swo

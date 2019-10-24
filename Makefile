@@ -22,7 +22,7 @@ cmds := $(wildcard cmd/*)
 all: clean $(cmds)
 
 GOBUILD_FLAGS := -v
-$(cmds):
+$(cmds): vendor
 	@echo "+ Building $(notdir $@)"
 	@CGO_ENABLED=0 go build -o $(notdir $@) \
 		$(GOBUILD_FLAGS) \

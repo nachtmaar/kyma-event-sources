@@ -18,7 +18,7 @@ required = [
 [[constraint]]
   name = "knative.dev/serving"
   version = "v0.9.0"
-  
+
 [[constraint]]
   name = "github.com/cloudevents/sdk-go"
   version = "0.10.0"
