@@ -35,7 +35,7 @@
   version = "v0.12.5"
 
 [[projects]]
-  digest = "1:85e80b53370d7f83af1ad845027ae655f3ac32028e4c608456d7978ca1dda0f5"
+  digest = "1:6ef35dfacf196bfad80ffd405ff7999448f1066a49eb2ff9ba8bfa746b294878"
   name = "github.com/aws/aws-sdk-go"
   packages = [
     "aws",
@@ -72,8 +72,8 @@
     "service/sts/stsiface",
   ]
   pruneopts = "UT"
-  revision = "15cbab53359072d0801eb32d16d0a406207e8716"
-  version = "v1.25.14"
+  revision = "23e996a57757e6b586048809309e3945557c4edb"
+  version = "v1.25.22"
 
 [[projects]]
   digest = "1:d6afaeed1502aa28e80a4ed0981d570ad91b2579193404256ce672ed0a609e0d"
@@ -173,7 +173,7 @@
   name = "github.com/golang/groupcache"
   packages = ["lru"]
   pruneopts = "UT"
-  revision = "404acd9df4cc9859d64fb9eed42e5c026187287a"
+  revision = "611e8accdfc92c4187d399e95ce826046d4c8d73"
 
 [[projects]]
   digest = "1:68f0ad2c2af816280679ccac300f7b765fb6a6567fa949e07fb4c7125a6a6398"
@@ -214,6 +214,7 @@
   ]
   pruneopts = "UT"
   revision = "6f77996f0c42f7b84e5a2b252227263f93432e9b"
+  version = "v0.3.0"
 
 [[projects]]
   digest = "1:10aa62acd56f635de190110a836aa261b3774e697b2b6a7af27d8263cf856d47"
@@ -492,7 +493,7 @@
   version = "v1.2.0"
 
 [[projects]]
-  digest = "1:47314493180bf60badf09c57e1e3dcecb2cd8e5b717b203c52a93dc68b06b58a"
+  digest = "1:2aeb1ac62ec3665aeec050f1659583225cadcb61dbb7f8b4227e2164e51b28dc"
   name = "go.uber.org/zap"
   packages = [
     ".",
@@ -505,8 +506,8 @@
     "zaptest",
   ]
   pruneopts = "UT"
-  revision = "27376062155ad36be76b0f12cf1572a221d3a48c"
-  version = "v1.10.0"
+  revision = "0065243e7bbd958fab35324e41201f5eb682c527"
+  version = "v1.11.0"
 
 [[projects]]
   branch = "master"
@@ -514,7 +515,7 @@
   name = "golang.org/x/crypto"
   packages = ["ssh/terminal"]
   pruneopts = "UT"
-  revision = "87dc89f01550277dc22b74ffcf4cd89fa2f40f4c"
+  revision = "8986dd9e96cf0a6f74da406c005ba3df38527c04"
 
 [[projects]]
   branch = "master"
@@ -532,7 +533,7 @@
     "trace",
   ]
   pruneopts = "UT"
-  revision = "da9a3fd4c5820e74b24a6cb7fb438dc9b0dd377c"
+  revision = "fe3aa8a4527195a6057b3fad46619d7d090e99b5"
 
 [[projects]]
   branch = "master"
@@ -561,14 +562,14 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:9f5be1dbb5091bb62d83fbb6db8e794adb8f0e05424679d6f15a17b670e38b4c"
+  digest = "1:2c482fc32bdcfc572ce8b9cc37a409ae8a24c604b0dde73301d8de05d2c1f3e7"
   name = "golang.org/x/sys"
   packages = [
     "unix",
     "windows",
   ]
   pruneopts = "UT"
-  revision = "b09406accb4736d857a32bf9444cd7edae2ffa79"
+  revision = "f43be2a4598cf3a47be9f94f0c28197ed9eae611"
 
 [[projects]]
   digest = "1:8d8faad6b12a3a4c819a3f9618cb6ee1fa1cfc33253abeeea8b55336721e3405"
@@ -597,15 +598,15 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:cdd088b35bbf78713a6861a44a1bbe97e581861b6b8835c7f2211bbeca3671f6"
+  digest = "1:a2f668c709f9078828e99cb1768cb02e876cb81030545046a32b54b2ac2a9ea8"
   name = "golang.org/x/time"
   packages = ["rate"]
   pruneopts = "UT"
-  revision = "c4c64cad1fd0a1a8dab2523e04e61d35308e131e"
+  revision = "555d28b269f0569763d25dbe1a237ae74c6bcc82"
 
 [[projects]]
   branch = "master"
-  digest = "1:7da8a34bbd02af1e729c8616187dfc2aaa36eed0db3c5058c0390dfb6b56129c"
+  digest = "1:7f0b8424fe8fe96c258b2bdd01cfaafbfd7470bf285bea9ebce5f4f0f4c3d174"
   name = "golang.org/x/tools"
   packages = [
     "go/ast/astutil",
@@ -623,11 +624,11 @@
     "internal/span",
   ]
   pruneopts = "UT"
-  revision = "846f856e7d713bd2e8112adf3b8649d7bb111cca"
+  revision = "b9c20aec41a58d08b028186fa880270b804fb2e6"
 
 [[projects]]
   branch = "master"
-  digest = "1:debb70916843d90c7d50dd8b420a9c126e1015d7cc24548e74273c16d5af0455"
+  digest = "1:526726f1b56fe59206fd9ade203359f20d0958c2feaa6c263f677cf655944c92"
   name = "google.golang.org/api"
   packages = [
     "googleapi/transport",
@@ -641,7 +642,7 @@
     "transport/http/internal/propagation",
   ]
   pruneopts = "UT"
-  revision = "e6ade80c6e2a122a6588f9f827207dcb99da433e"
+  revision = "4f42dad4690a01d7f6fa461106c63889ff1be027"
 
 [[projects]]
   digest = "1:c98e9b93e6d178378530b920fe6e1aa4b3dd4972872111e83827746aa1f33ded"
@@ -666,7 +667,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:12f851e70786da7997d4aa63dead45e9d864d5d9db9bf34c03d8e9fcd08b4535"
+  digest = "1:36a3c3d1e304aa3363855534407a2a81a208a59a63cadb3c9108e165db8436e1"
   name = "google.golang.org/genproto"
   packages = [
     "googleapis/api",
@@ -682,7 +683,7 @@
     "protobuf/field_mask",
   ]
   pruneopts = "UT"
-  revision = "548a555dbc03994223efbaba0090152849259498"
+  revision = "919d9bdd9fe6f1a5dd95ce5d5e4cdb8fd3c516d0"
 
 [[projects]]
   digest = "1:85ddc24f246babda59e1cde353600d1b3fbfebebfa25f019dc4bbf19b907db8d"
