@@ -25,18 +25,22 @@ import (
 )
 
 const (
+	// MQTTConditionReady has status True when the MQTTSource is ready to
+	// send events.
+	MQTTConditionReady = apis.ConditionReady
+
 	// MQTTConditionSinkProvided has status True when the MQTTSource has
 	// been configured with a sink target.
 	MQTTConditionSinkProvided apis.ConditionType = "SinkProvided"
 
-	// MQTTConditionReady has status True when the MQTTSource is ready to
-	// send events.
-	MQTTConditionReady = apis.ConditionReady
+	// MQTTConditionDeployed has status True when the MQTTSource adapter
+	// has been successfully deployed.
+	MQTTConditionDeployed apis.ConditionType = "Deployed"
 )
 
 var mqttCondSet = apis.NewLivingConditionSet(
 	MQTTConditionSinkProvided,
-	MQTTConditionReady,
+	MQTTConditionDeployed,
 )
 
 // MQTTSourceGVK returns a GroupVersionKind for the MQTTSource type.
@@ -64,27 +68,41 @@ func (s *MQTTSourceStatus) InitializeConditions() {
 	mqttCondSet.Manage(s).InitializeConditions()
 }
 
-// PropagateSinkProvided evaluates the provided sink URI and sets the sink
-// provided condition.
-func (s *MQTTSourceStatus) PropagateSinkProvided(uri string) {
+// MarkSink sets the SinkProvided condition to True using the given URI.
+func (s *MQTTSourceStatus) MarkSink(uri string) {
 	s.SinkURI = uri
 	if uri == "" {
-		mqttCondSet.Manage(s).MarkFalse(MQTTConditionSinkProvided,
-			"NotFound", "The events sink was not found")
+		mqttCondSet.Manage(s).MarkUnknown(MQTTConditionSinkProvided,
+			"SinkEmpty", "The sink has no URI")
 		return
 	}
 	mqttCondSet.Manage(s).MarkTrue(MQTTConditionSinkProvided)
 }
 
-// PropagateReady uses the readiness of the provided Knative Service to determine if
-// the Ready condition should be marked as true or false.
-func (s *MQTTSourceStatus) PropagateReady(ksvc *servingv1.Service) {
+// MarkNoSink sets the SinkProvided condition to False with the given reason
+// and message.
+func (s *MQTTSourceStatus) MarkNoSink(reason, msg string) {
+	mqttCondSet.Manage(s).MarkFalse(MQTTConditionSinkProvided,
+		reason, msg)
+}
+
+// PropagateServiceReady uses the readiness of the provided Knative Service to
+// determine whether the Deployed condition should be marked as true or false.
+func (s *MQTTSourceStatus) PropagateServiceReady(ksvc *servingv1.Service) {
 	if ksvc.Status.IsReady() {
-		mqttCondSet.Manage(s).MarkTrue(MQTTConditionReady)
+		mqttCondSet.Manage(s).MarkTrue(MQTTConditionDeployed)
 		return
 	}
 
-	condReady := ksvc.Status.GetCondition(MQTTConditionReady)
-	mqttCondSet.Manage(s).MarkFalse(MQTTConditionReady, "KnativeServiceNotReady",
-		"The adapter Service is not yet ready: %s", condReady.Message)
+	msg := "The adapter Service is not yet ready"
+	if ksvcCondReady := ksvc.Status.GetCondition(servingv1.ServiceConditionReady); ksvcCondReady != nil {
+		msg += ": " + ksvcCondReady.Message
+	}
+	mqttCondSet.Manage(s).MarkFalse(MQTTConditionDeployed, "KnativeServiceNotReady", msg)
+}
+
+// IsReady returns whether the MQTTSource is ready to serve the requested
+// configuration.
+func (s *MQTTSourceStatus) IsReady() bool {
+	return mqttCondSet.Manage(s).IsHappy()
 }

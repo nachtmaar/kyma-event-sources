@@ -30,14 +30,11 @@ import (
 // or dropped.
 func Handle(err error, ctx context.Context, msg string) error {
 	switch {
-
 	case err == nil:
 		return nil
-
 	case IsSkippable(err):
 		logging.FromContext(ctx).Debugw("[skipped] "+msg, zap.Error(err))
 		return nil
-
 	default:
 		logging.FromContext(ctx).Errorw(msg, zap.Error(err))
 		return err

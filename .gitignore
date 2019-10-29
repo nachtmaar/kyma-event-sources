@@ -19,6 +19,9 @@
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 
+# Debuggers
+__debug_bin
+
 # Editors and IDEs
 /.idea/
 *~

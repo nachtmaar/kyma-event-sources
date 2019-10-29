@@ -492,7 +492,7 @@
   version = "v1.2.0"
 
 [[projects]]
-  digest = "1:676160e6a4722b08e0e26b11521d575c2cb2b6f0c679e1ee6178c5d8dee51e5e"
+  digest = "1:47314493180bf60badf09c57e1e3dcecb2cd8e5b717b203c52a93dc68b06b58a"
   name = "go.uber.org/zap"
   packages = [
     ".",
@@ -500,7 +500,9 @@
     "internal/bufferpool",
     "internal/color",
     "internal/exit",
+    "internal/ztest",
     "zapcore",
+    "zaptest",
   ]
   pruneopts = "UT"
   revision = "27376062155ad36be76b0f12cf1572a221d3a48c"
@@ -861,12 +863,13 @@
   version = "kubernetes-1.12.9"
 
 [[projects]]
-  digest = "1:cc32773e8e91cc477c1a675cb61d600e146525e8f7fa9e6db88c9184f7f31f8d"
+  digest = "1:18d32377dab680995af48d9ad52adeaaf70ed3907f880db34a5f5f5b5679f643"
   name = "k8s.io/client-go"
   packages = [
     "discovery",
     "discovery/fake",
     "dynamic",
+    "dynamic/fake",
     "informers",
     "informers/admissionregistration",
     "informers/admissionregistration/v1alpha1",
@@ -912,38 +915,70 @@
     "informers/storage/v1alpha1",
     "informers/storage/v1beta1",
     "kubernetes",
+    "kubernetes/fake",
     "kubernetes/scheme",
     "kubernetes/typed/admissionregistration/v1alpha1",
+    "kubernetes/typed/admissionregistration/v1alpha1/fake",
     "kubernetes/typed/admissionregistration/v1beta1",
+    "kubernetes/typed/admissionregistration/v1beta1/fake",
     "kubernetes/typed/apps/v1",
+    "kubernetes/typed/apps/v1/fake",
     "kubernetes/typed/apps/v1beta1",
+    "kubernetes/typed/apps/v1beta1/fake",
     "kubernetes/typed/apps/v1beta2",
+    "kubernetes/typed/apps/v1beta2/fake",
     "kubernetes/typed/authentication/v1",
+    "kubernetes/typed/authentication/v1/fake",
     "kubernetes/typed/authentication/v1beta1",
+    "kubernetes/typed/authentication/v1beta1/fake",
     "kubernetes/typed/authorization/v1",
+    "kubernetes/typed/authorization/v1/fake",
     "kubernetes/typed/authorization/v1beta1",
+    "kubernetes/typed/authorization/v1beta1/fake",
     "kubernetes/typed/autoscaling/v1",
+    "kubernetes/typed/autoscaling/v1/fake",
     "kubernetes/typed/autoscaling/v2beta1",
+    "kubernetes/typed/autoscaling/v2beta1/fake",
     "kubernetes/typed/autoscaling/v2beta2",
+    "kubernetes/typed/autoscaling/v2beta2/fake",
     "kubernetes/typed/batch/v1",
+    "kubernetes/typed/batch/v1/fake",
     "kubernetes/typed/batch/v1beta1",
+    "kubernetes/typed/batch/v1beta1/fake",
     "kubernetes/typed/batch/v2alpha1",
+    "kubernetes/typed/batch/v2alpha1/fake",
     "kubernetes/typed/certificates/v1beta1",
+    "kubernetes/typed/certificates/v1beta1/fake",
     "kubernetes/typed/coordination/v1beta1",
+    "kubernetes/typed/coordination/v1beta1/fake",
     "kubernetes/typed/core/v1",
+    "kubernetes/typed/core/v1/fake",
     "kubernetes/typed/events/v1beta1",
+    "kubernetes/typed/events/v1beta1/fake",
     "kubernetes/typed/extensions/v1beta1",
+    "kubernetes/typed/extensions/v1beta1/fake",
     "kubernetes/typed/networking/v1",
+    "kubernetes/typed/networking/v1/fake",
     "kubernetes/typed/policy/v1beta1",
+    "kubernetes/typed/policy/v1beta1/fake",
     "kubernetes/typed/rbac/v1",
+    "kubernetes/typed/rbac/v1/fake",
     "kubernetes/typed/rbac/v1alpha1",
+    "kubernetes/typed/rbac/v1alpha1/fake",
     "kubernetes/typed/rbac/v1beta1",
+    "kubernetes/typed/rbac/v1beta1/fake",
     "kubernetes/typed/scheduling/v1alpha1",
+    "kubernetes/typed/scheduling/v1alpha1/fake",
     "kubernetes/typed/scheduling/v1beta1",
+    "kubernetes/typed/scheduling/v1beta1/fake",
     "kubernetes/typed/settings/v1alpha1",
+    "kubernetes/typed/settings/v1alpha1/fake",
     "kubernetes/typed/storage/v1",
+    "kubernetes/typed/storage/v1/fake",
     "kubernetes/typed/storage/v1alpha1",
+    "kubernetes/typed/storage/v1alpha1/fake",
     "kubernetes/typed/storage/v1beta1",
+    "kubernetes/typed/storage/v1beta1/fake",
     "listers/admissionregistration/v1alpha1",
     "listers/admissionregistration/v1beta1",
     "listers/apps/v1",
@@ -1065,7 +1100,7 @@
   revision = "0270cf2f1c1d995d34b36019a6f65d58e6e33ad4"
 
 [[projects]]
-  digest = "1:20725416132ff042d150002043a4ed6e511eea3e448ff2caef0e38b79fb9ed6c"
+  digest = "1:a76f0131648156595c4aebb7b543f1e36e7a2f3df64394a2a73e72ba2baecab9"
   name = "knative.dev/eventing"
   packages = [
     "pkg/apis/duck",
@@ -1077,11 +1112,16 @@
     "pkg/apis/sources",
     "pkg/apis/sources/v1alpha1",
     "pkg/client/clientset/versioned",
+    "pkg/client/clientset/versioned/fake",
     "pkg/client/clientset/versioned/scheme",
     "pkg/client/clientset/versioned/typed/eventing/v1alpha1",
+    "pkg/client/clientset/versioned/typed/eventing/v1alpha1/fake",
     "pkg/client/clientset/versioned/typed/messaging/v1alpha1",
+    "pkg/client/clientset/versioned/typed/messaging/v1alpha1/fake",
     "pkg/client/clientset/versioned/typed/sources/v1alpha1",
+    "pkg/client/clientset/versioned/typed/sources/v1alpha1/fake",
     "pkg/client/injection/client",
+    "pkg/client/injection/client/fake",
     "pkg/duck",
     "pkg/logging",
     "pkg/reconciler",
@@ -1094,7 +1134,7 @@
 
 [[projects]]
   branch = "release-0.9"
-  digest = "1:ca8df046132c1256cc73a8260ecac95dd1251951ee4fa8b2b99719185cd9b73a"
+  digest = "1:35e9ef2fd07bda212acfc0aac54c74f95f33277ec6acc210add5dc372aa1ae70"
   name = "knative.dev/pkg"
   packages = [
     "apis",
@@ -1105,6 +1145,7 @@
     "apis/v1alpha1",
     "changeset",
     "client/injection/kube/client",
+    "client/injection/kube/client/fake",
     "codegen/cmd/injection-gen",
     "codegen/cmd/injection-gen/args",
     "codegen/cmd/injection-gen/generators",
@@ -1112,18 +1153,22 @@
     "controller",
     "injection",
     "injection/clients/dynamicclient",
+    "injection/clients/dynamicclient/fake",
     "injection/sharedmain",
     "kmeta",
     "kmp",
     "logging",
     "logging/logkey",
+    "logging/testing",
     "metrics",
     "metrics/metricskey",
     "network",
     "profiling",
     "ptr",
+    "reconciler/testing",
     "signals",
     "system",
+    "system/testing",
     "tracker",
     "webhook",
   ]
@@ -1131,7 +1176,7 @@
   revision = "74659889c421b26b9a416fd203f5a8d3e602bfb2"
 
 [[projects]]
-  digest = "1:a7ca4b88452d21eb3276f1fc1dddcb4e8dd2cb624b578ed0601ce236308a3e4f"
+  digest = "1:1dff26a3480292217ce9fc85eb6329cc74c1b6f40f4e13079a32e137bd5a82ad"
   name = "knative.dev/serving"
   packages = [
     "pkg/apis/autoscaling",
@@ -1144,12 +1189,18 @@
     "pkg/apis/serving/v1alpha1",
     "pkg/apis/serving/v1beta1",
     "pkg/client/clientset/versioned",
+    "pkg/client/clientset/versioned/fake",
     "pkg/client/clientset/versioned/scheme",
     "pkg/client/clientset/versioned/typed/autoscaling/v1alpha1",
+    "pkg/client/clientset/versioned/typed/autoscaling/v1alpha1/fake",
     "pkg/client/clientset/versioned/typed/networking/v1alpha1",
+    "pkg/client/clientset/versioned/typed/networking/v1alpha1/fake",
     "pkg/client/clientset/versioned/typed/serving/v1",
+    "pkg/client/clientset/versioned/typed/serving/v1/fake",
     "pkg/client/clientset/versioned/typed/serving/v1alpha1",
+    "pkg/client/clientset/versioned/typed/serving/v1alpha1/fake",
     "pkg/client/clientset/versioned/typed/serving/v1beta1",
+    "pkg/client/clientset/versioned/typed/serving/v1beta1/fake",
     "pkg/client/informers/externalversions",
     "pkg/client/informers/externalversions/autoscaling",
     "pkg/client/informers/externalversions/autoscaling/v1alpha1",
@@ -1161,8 +1212,11 @@
     "pkg/client/informers/externalversions/serving/v1alpha1",
     "pkg/client/informers/externalversions/serving/v1beta1",
     "pkg/client/injection/client",
+    "pkg/client/injection/client/fake",
     "pkg/client/injection/informers/factory",
+    "pkg/client/injection/informers/factory/fake",
     "pkg/client/injection/informers/serving/v1/service",
+    "pkg/client/injection/informers/serving/v1/service/fake",
     "pkg/client/listers/autoscaling/v1alpha1",
     "pkg/client/listers/networking/v1alpha1",
     "pkg/client/listers/serving/v1",
@@ -1187,6 +1241,7 @@
     "go.uber.org/zap",
     "k8s.io/api/core/v1",
     "k8s.io/apimachinery/pkg/api/errors",
+    "k8s.io/apimachinery/pkg/api/resource",
     "k8s.io/apimachinery/pkg/apis/meta/v1",
     "k8s.io/apimachinery/pkg/conversion",
     "k8s.io/apimachinery/pkg/labels",
@@ -1194,6 +1249,7 @@
     "k8s.io/apimachinery/pkg/runtime/schema",
     "k8s.io/apimachinery/pkg/runtime/serializer",
     "k8s.io/apimachinery/pkg/types",
+    "k8s.io/apimachinery/pkg/util/diff",
     "k8s.io/apimachinery/pkg/util/runtime",
     "k8s.io/apimachinery/pkg/watch",
     "k8s.io/client-go/discovery",
@@ -1202,26 +1258,36 @@
     "k8s.io/client-go/rest",
     "k8s.io/client-go/testing",
     "k8s.io/client-go/tools/cache",
+    "k8s.io/client-go/tools/record",
     "k8s.io/client-go/util/flowcontrol",
     "k8s.io/code-generator/cmd/client-gen",
     "k8s.io/code-generator/cmd/deepcopy-gen",
     "k8s.io/code-generator/cmd/informer-gen",
     "k8s.io/code-generator/cmd/lister-gen",
+    "knative.dev/eventing/pkg/client/injection/client/fake",
     "knative.dev/eventing/pkg/duck",
     "knative.dev/eventing/pkg/reconciler",
     "knative.dev/pkg/apis",
     "knative.dev/pkg/apis/duck/v1beta1",
+    "knative.dev/pkg/client/injection/kube/client/fake",
     "knative.dev/pkg/codegen/cmd/injection-gen",
     "knative.dev/pkg/configmap",
     "knative.dev/pkg/controller",
     "knative.dev/pkg/injection",
+    "knative.dev/pkg/injection/clients/dynamicclient/fake",
     "knative.dev/pkg/injection/sharedmain",
     "knative.dev/pkg/logging",
+    "knative.dev/pkg/logging/testing",
+    "knative.dev/pkg/ptr",
+    "knative.dev/pkg/reconciler/testing",
     "knative.dev/serving/pkg/apis/serving",
     "knative.dev/serving/pkg/apis/serving/v1",
+    "knative.dev/serving/pkg/client/clientset/versioned/fake",
     "knative.dev/serving/pkg/client/clientset/versioned/typed/serving/v1",
     "knative.dev/serving/pkg/client/injection/client",
+    "knative.dev/serving/pkg/client/injection/client/fake",
     "knative.dev/serving/pkg/client/injection/informers/serving/v1/service",
+    "knative.dev/serving/pkg/client/injection/informers/serving/v1/service/fake",
     "knative.dev/serving/pkg/client/listers/serving/v1",
   ]
   solver-name = "gps-cdcl"

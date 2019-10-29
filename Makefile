@@ -38,6 +38,19 @@ vendor: Gopkg.lock
 	@dep ensure -v --vendor-only
 
 
+
+.PHONY: test
+
+testpkgs := $(shell go list ./... | grep -vE '/apis/|/client/|/cmd/|/testing')
+
+GOTEST_FLAGS := -cover
+test: vendor
+	@echo "+ Performing unit tests"
+	@go test \
+		$(GOTEST_FLAGS) \
+		$(testpkgs)
+
+
 #####################
 #                   #
 #  Code generation  #

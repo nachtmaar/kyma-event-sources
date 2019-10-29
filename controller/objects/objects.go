@@ -19,20 +19,17 @@ limitations under the License.
 package objects
 
 import (
-	"context"
-
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	knapis "knative.dev/pkg/apis"
-	servingapis "knative.dev/serving/pkg/apis/serving"
+	"knative.dev/serving/pkg/apis/serving"
 	servingv1 "knative.dev/serving/pkg/apis/serving/v1"
 )
 
 // List of annotations set on Knative Serving objects by the Knative Serving admission webhook.
 var knativeServingAnnotations = []string{
-	servingapis.GroupName + knapis.CreatorAnnotationSuffix,
-	servingapis.GroupName + knapis.UpdaterAnnotationSuffix,
+	serving.CreatorAnnotation,
+	serving.UpdaterAnnotation,
 }
 
 // NewService creates a Service object.
@@ -47,8 +44,6 @@ func NewService(ns, name string, opts ...ServiceOption) *servingv1.Service {
 	for _, opt := range opts {
 		opt(s)
 	}
-
-	s.SetDefaults(context.Background())
 
 	return s
 }
@@ -88,14 +83,21 @@ func WithContainerImage(img string) ServiceOption {
 	}
 }
 
+// WithExisting copies some important attributes from an existing Service.
 func WithExisting(ksvc *servingv1.Service) ServiceOption {
 	return func(s *servingv1.Service) {
-		// resource version must unmodified and returned to the server
+		// resourceVersion must be returned to the API server
+		// unmodified for optimistic concurrency
 		s.ResourceVersion = ksvc.ResourceVersion
 
 		// immutable Knative annotations must be preserved
 		for _, ann := range knativeServingAnnotations {
-			metav1.SetMetaDataAnnotation(&s.ObjectMeta, ann, ksvc.Annotations[ann])
+			if val, ok := ksvc.Annotations[ann]; ok {
+				metav1.SetMetaDataAnnotation(&s.ObjectMeta, ann, val)
+			}
 		}
+
+		// preserve status to avoid resetting conditions
+		s.Status = ksvc.Status
 	}
 }

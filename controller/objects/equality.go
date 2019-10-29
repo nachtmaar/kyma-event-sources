@@ -43,6 +43,9 @@ func ksvcEqual(s1, s2 *servingv1.Service) bool {
 	if !reflect.DeepEqual(s1.Labels, s2.Labels) {
 		return false
 	}
+	if !reflect.DeepEqual(s1.Annotations, s2.Annotations) {
+		return false
+	}
 
 	ps1 := &s1.Spec.ConfigurationSpec.Template.Spec.PodSpec
 	ps2 := &s2.Spec.ConfigurationSpec.Template.Spec.PodSpec

@@ -22,17 +22,17 @@ import (
 	"fmt"
 	"os"
 
-	sourcesclient "github.com/antoineco/mqtt-event-source/client/generated/injection/client"
 	"k8s.io/client-go/tools/cache"
 
 	"knative.dev/eventing/pkg/duck"
 	"knative.dev/eventing/pkg/reconciler"
 	"knative.dev/pkg/configmap"
 	"knative.dev/pkg/controller"
-	knservingclient "knative.dev/serving/pkg/client/injection/client"
+	servingclient "knative.dev/serving/pkg/client/injection/client"
 	knserviceinformersv1 "knative.dev/serving/pkg/client/injection/informers/serving/v1/service"
 
 	sourcesv1alpha1 "github.com/antoineco/mqtt-event-source/apis/sources/v1alpha1"
+	sourcesclient "github.com/antoineco/mqtt-event-source/client/generated/injection/client"
 	mqttsourceinformersv1alpha1 "github.com/antoineco/mqtt-event-source/client/generated/injection/informers/sources/v1alpha1/mqttsource"
 )
 
@@ -59,8 +59,8 @@ func New(ctx context.Context, cmw configmap.Watcher) *controller.Impl {
 		adapterImage:     getAdapterImage(),
 		mqttsourceLister: mqttSourceInformer.Lister(),
 		ksvcLister:       knServiceInformer.Lister(),
-		servingClient:    knservingclient.Get(ctx).ServingV1(),
 		sourcesClient:    sourcesclient.Get(ctx).SourcesV1alpha1(),
+		servingClient:    servingclient.Get(ctx).ServingV1(),
 	}
 	impl := controller.NewImpl(r, r.Logger, reconcilerName)
 
@@ -82,6 +82,5 @@ func getAdapterImage() string {
 	if adapterImage := os.Getenv(adapterImageEnvVar); adapterImage != "" {
 		return adapterImage
 	}
-
 	panic(fmt.Errorf("environment variable %s is not set", adapterImageEnvVar))
 }

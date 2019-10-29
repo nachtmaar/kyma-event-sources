@@ -18,6 +18,7 @@ package controller
 
 import (
 	"context"
+	"reflect"
 
 	pkgerrors "github.com/pkg/errors"
 
@@ -67,20 +68,17 @@ func (r *Reconciler) Reconcile(ctx context.Context, key string) error {
 		return errors.Handle(err, ctx, "Failed to get object from local store")
 	}
 
-	// get the Knative Service if it exists, otherwise create it
 	currentKsvc, err := r.getOrCreateKnService(mqttSrc)
 	if err != nil {
 		return err
 	}
 
-	// synchronize desired state against current state of the Knative Service
 	desiredKsvc := r.makeKnService(mqttSrc, currentKsvc)
 	currentKsvc, err = r.syncKnService(currentKsvc, desiredKsvc)
 	if err != nil {
-		return pkgerrors.Wrap(err, "Failed to synchronize Knative Service")
+		return pkgerrors.Wrap(err, "failed to synchronize Knative Service")
 	}
 
-	// synchronize status of the MQTTSource
 	return r.syncStatus(mqttSrc, currentKsvc)
 }
 
@@ -147,12 +145,15 @@ func (r *Reconciler) syncStatus(mqttSrc *v1alpha1.MQTTSource, currentKsvc *servi
 	statusCpy.InitializeConditions()
 
 	srcDesc := mqttSrc.ToDesc()
-	sinkURI, _ := r.sinkReconciler.GetSinkURI(getSinkObjRef(), mqttSrc, srcDesc)
-	statusCpy.PropagateSinkProvided(sinkURI)
+	sinkURI, err := r.sinkReconciler.GetSinkURI(getSinkObjRef(), mqttSrc, srcDesc)
+	if err != nil {
+		statusCpy.MarkNoSink("NotFound", "The sink does not exist")
+	}
+	statusCpy.MarkSink(sinkURI)
 
-	statusCpy.PropagateReady(currentKsvc)
+	statusCpy.PropagateServiceReady(currentKsvc)
 
-	if !objects.Semantic.DeepEqual(statusCpy, mqttSrc.Status) {
+	if !reflect.DeepEqual(statusCpy, &mqttSrc.Status) {
 		mqttSrc = mqttSrc.DeepCopy()
 		mqttSrc.Status = *statusCpy
 
@@ -166,7 +167,7 @@ func (r *Reconciler) syncStatus(mqttSrc *v1alpha1.MQTTSource, currentKsvc *servi
 	return nil
 }
 
-// TODO: find a way not to have this hardcoded
+// TODO: find a way to not have this hardcoded
 func getSinkObjRef() *corev1.ObjectReference {
 	return &corev1.ObjectReference{
 		APIVersion: "v1",
