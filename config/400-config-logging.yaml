@@ -16,7 +16,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: config-logging
-  namespace: mqtt-source
+  namespace: kyma-event-sources
 data:
   # Default Knative config with development mode enabled and console encoding.
   # See https://https://godoc.org/go.uber.org/zap for details

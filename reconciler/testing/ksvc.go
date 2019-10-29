@@ -24,7 +24,7 @@ import (
 	"knative.dev/pkg/ptr"
 	servingv1 "knative.dev/serving/pkg/apis/serving/v1"
 
-	sourcesv1alpha1 "github.com/antoineco/mqtt-event-source/apis/sources/v1alpha1"
+	sourcesv1alpha1 "github.com/antoineco/kyma-event-sources/apis/sources/v1alpha1"
 )
 
 // NewService creates a Service object.

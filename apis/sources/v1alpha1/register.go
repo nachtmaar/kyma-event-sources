@@ -21,7 +21,7 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	"github.com/antoineco/mqtt-event-source/apis/sources"
+	"github.com/antoineco/kyma-event-sources/apis/sources"
 )
 
 // SchemeGroupVersion contains the group and version used to register custom types.

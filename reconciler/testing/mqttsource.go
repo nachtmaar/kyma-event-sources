@@ -20,7 +20,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/types"
 
-	sourcesv1alpha1 "github.com/antoineco/mqtt-event-source/apis/sources/v1alpha1"
+	sourcesv1alpha1 "github.com/antoineco/kyma-event-sources/apis/sources/v1alpha1"
 )
 
 // TODO: the sink should be configurable

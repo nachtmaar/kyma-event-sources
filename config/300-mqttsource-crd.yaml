@@ -18,6 +18,7 @@ metadata:
   name: mqttsources.sources.kyma-project.io
   labels:
     eventing.knative.dev/source: 'true'
+    kyma-project.io/crd-install: 'true'
 spec:
   group: sources.kyma-project.io
   scope: Namespaced

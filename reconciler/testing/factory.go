@@ -32,7 +32,7 @@ import (
 	rt "knative.dev/pkg/reconciler/testing"
 	fakeservingclient "knative.dev/serving/pkg/client/injection/client/fake"
 
-	fakeclient "github.com/antoineco/mqtt-event-source/client/generated/injection/client/fake"
+	fakeclient "github.com/antoineco/kyma-event-sources/client/generated/injection/client/fake"
 )
 
 const (

@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package controller
+package mqttsource
 
 import (
 	"os"
@@ -30,13 +30,13 @@ import (
 	_ "knative.dev/pkg/injection/clients/dynamicclient/fake"
 
 	// Link fake informers and clients accessed by our controller
-	_ "github.com/antoineco/mqtt-event-source/client/generated/injection/client/fake"
-	_ "github.com/antoineco/mqtt-event-source/client/generated/injection/informers/sources/v1alpha1/mqttsource/fake"
+	_ "github.com/antoineco/kyma-event-sources/client/generated/injection/client/fake"
+	_ "github.com/antoineco/kyma-event-sources/client/generated/injection/informers/sources/v1alpha1/mqttsource/fake"
 	_ "knative.dev/serving/pkg/client/injection/client/fake"
 	_ "knative.dev/serving/pkg/client/injection/informers/serving/v1/service/fake"
 )
 
-func TestNew(t *testing.T) {
+func TestNewController(t *testing.T) {
 	defer func() {
 		if r := recover(); r != nil {
 			t.Errorf("Unexpected panic: %v", r)
@@ -53,7 +53,7 @@ func TestNew(t *testing.T) {
 		t.Errorf("Expected %d injected informers, got %d", expect, got)
 	}
 
-	ctrler := New(ctx, cmw)
+	ctrler := NewController(ctx, cmw)
 	r := ctrler.Reconciler.(*Reconciler)
 
 	ensureNoNilField(reflect.ValueOf(r).Elem(), t)

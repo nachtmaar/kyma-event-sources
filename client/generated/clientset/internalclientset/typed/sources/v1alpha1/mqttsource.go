@@ -19,8 +19,8 @@ limitations under the License.
 package v1alpha1
 
 import (
-	v1alpha1 "github.com/antoineco/mqtt-event-source/apis/sources/v1alpha1"
-	scheme "github.com/antoineco/mqtt-event-source/client/generated/clientset/internalclientset/scheme"
+	v1alpha1 "github.com/antoineco/kyma-event-sources/apis/sources/v1alpha1"
+	scheme "github.com/antoineco/kyma-event-sources/client/generated/clientset/internalclientset/scheme"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	types "k8s.io/apimachinery/pkg/types"
 	watch "k8s.io/apimachinery/pkg/watch"

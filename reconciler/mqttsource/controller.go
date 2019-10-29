@@ -14,8 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-// Package controller implements a controller for the MQTTSource custom resource.
-package controller
+// Package mqttsource implements a controller for the MQTTSource custom resource.
+package mqttsource
 
 import (
 	"context"
@@ -31,9 +31,9 @@ import (
 	servingclient "knative.dev/serving/pkg/client/injection/client"
 	knserviceinformersv1 "knative.dev/serving/pkg/client/injection/informers/serving/v1/service"
 
-	sourcesv1alpha1 "github.com/antoineco/mqtt-event-source/apis/sources/v1alpha1"
-	sourcesclient "github.com/antoineco/mqtt-event-source/client/generated/injection/client"
-	mqttsourceinformersv1alpha1 "github.com/antoineco/mqtt-event-source/client/generated/injection/informers/sources/v1alpha1/mqttsource"
+	sourcesv1alpha1 "github.com/antoineco/kyma-event-sources/apis/sources/v1alpha1"
+	sourcesclient "github.com/antoineco/kyma-event-sources/client/generated/injection/client"
+	mqttsourceinformersv1alpha1 "github.com/antoineco/kyma-event-sources/client/generated/injection/informers/sources/v1alpha1/mqttsource"
 )
 
 const (
@@ -42,15 +42,15 @@ const (
 
 	// controllerAgentName is the string used by this controller to identify
 	// itself when creating events.
-	controllerAgentName = "mqttsource-controller"
+	controllerAgentName = "mqtt-source-controller"
 
 	// adapterImageEnvVar is the name of the environment variable containing the
 	// container image of the MQTT adapter.
-	adapterImageEnvVar = "ADAPTER_IMAGE"
+	adapterImageEnvVar = "MQTT_ADAPTER_IMAGE"
 )
 
-// New returns a new controller that reconciles MQTTSource objects.
-func New(ctx context.Context, cmw configmap.Watcher) *controller.Impl {
+// NewController returns a new controller that reconciles MQTTSource objects.
+func NewController(ctx context.Context, cmw configmap.Watcher) *controller.Impl {
 	mqttSourceInformer := mqttsourceinformersv1alpha1.Get(ctx)
 	knServiceInformer := knserviceinformersv1.Get(ctx)
 

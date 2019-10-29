@@ -22,9 +22,11 @@ import (
 
 	"knative.dev/pkg/injection/sharedmain"
 
-	"github.com/antoineco/mqtt-event-source/controller"
+	"github.com/antoineco/kyma-event-sources/reconciler/mqttsource"
 )
 
 func main() {
-	sharedmain.Main("mqtt_source", controller.New)
+	sharedmain.Main("sources_controller",
+		mqttsource.NewController,
+	)
 }

@@ -15,24 +15,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mqttsource-controller
-  namespace: mqtt-source
+  name: sources-controller
+  namespace: kyma-event-sources
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mqttsource-controller
+      app: sources-controller
   template:
     metadata:
       annotations:
         sidecar.istio.io/inject: 'false'
       labels:
-        app: mqttsource-controller
+        app: sources-controller
     spec:
-      serviceAccountName: mqttsource-controller
+      serviceAccountName: sources-controller
       containers:
       - name: controller
-        image: github.com/antoineco/mqtt-event-source/cmd/mqttsource-controller
+        image: github.com/antoineco/kyma-event-sources/cmd/sources-controller
         resources:
           requests:
             cpu: 10m
@@ -46,6 +46,6 @@ spec:
               fieldRef:
                 fieldPath: metadata.namespace
           - name: METRICS_DOMAIN
-            value: kyma-project.io/sources
-          - name: ADAPTER_IMAGE
-            value: github.com/antoineco/mqtt-event-source/cmd/mqttsource-adapter
+            value: kyma-project.io/event-sources
+          - name: MQTT_ADAPTER_IMAGE
+            value: github.com/antoineco/kyma-event-sources/cmd/mqttsource-adapter

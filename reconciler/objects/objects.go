@@ -14,8 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-// Package objects contains utilities for manipulating and comparing API
-// objects.
+// Package objects contains utilities for creating and comparing API objects.
 package objects
 
 import (

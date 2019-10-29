@@ -19,7 +19,7 @@ limitations under the License.
 package internalclientset
 
 import (
-	sourcesv1alpha1 "github.com/antoineco/mqtt-event-source/client/generated/clientset/internalclientset/typed/sources/v1alpha1"
+	sourcesv1alpha1 "github.com/antoineco/kyma-event-sources/client/generated/clientset/internalclientset/typed/sources/v1alpha1"
 	discovery "k8s.io/client-go/discovery"
 	rest "k8s.io/client-go/rest"
 	flowcontrol "k8s.io/client-go/util/flowcontrol"

@@ -19,8 +19,8 @@ limitations under the License.
 package v1alpha1
 
 import (
-	v1alpha1 "github.com/antoineco/mqtt-event-source/apis/sources/v1alpha1"
-	"github.com/antoineco/mqtt-event-source/client/generated/clientset/internalclientset/scheme"
+	v1alpha1 "github.com/antoineco/kyma-event-sources/apis/sources/v1alpha1"
+	"github.com/antoineco/kyma-event-sources/client/generated/clientset/internalclientset/scheme"
 	serializer "k8s.io/apimachinery/pkg/runtime/serializer"
 	rest "k8s.io/client-go/rest"
 )

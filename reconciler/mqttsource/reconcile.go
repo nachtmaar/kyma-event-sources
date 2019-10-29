@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package controller
+package mqttsource
 
 import (
 	"context"
@@ -33,11 +33,11 @@ import (
 	servingclientv1 "knative.dev/serving/pkg/client/clientset/versioned/typed/serving/v1"
 	servinglistersv1 "knative.dev/serving/pkg/client/listers/serving/v1"
 
-	"github.com/antoineco/mqtt-event-source/apis/sources/v1alpha1"
-	sourcesclientv1alpha1 "github.com/antoineco/mqtt-event-source/client/generated/clientset/internalclientset/typed/sources/v1alpha1"
-	sourceslistersv1alpha1 "github.com/antoineco/mqtt-event-source/client/generated/lister/sources/v1alpha1"
-	"github.com/antoineco/mqtt-event-source/controller/errors"
-	"github.com/antoineco/mqtt-event-source/controller/objects"
+	"github.com/antoineco/kyma-event-sources/apis/sources/v1alpha1"
+	sourcesclientv1alpha1 "github.com/antoineco/kyma-event-sources/client/generated/clientset/internalclientset/typed/sources/v1alpha1"
+	sourceslistersv1alpha1 "github.com/antoineco/kyma-event-sources/client/generated/lister/sources/v1alpha1"
+	"github.com/antoineco/kyma-event-sources/reconciler/errors"
+	"github.com/antoineco/kyma-event-sources/reconciler/objects"
 )
 
 // Reconciler reconciles MQTTSource resources.
@@ -148,17 +148,19 @@ func (r *Reconciler) syncStatus(mqttSrc *v1alpha1.MQTTSource, currentKsvc *servi
 	sinkURI, err := r.sinkReconciler.GetSinkURI(getSinkObjRef(), mqttSrc, srcDesc)
 	if err != nil {
 		statusCpy.MarkNoSink("NotFound", "The sink does not exist")
+		return err
 	}
 	statusCpy.MarkSink(sinkURI)
 
 	statusCpy.PropagateServiceReady(currentKsvc)
 
 	if !reflect.DeepEqual(statusCpy, &mqttSrc.Status) {
-		mqttSrc = mqttSrc.DeepCopy()
-		mqttSrc.Status = *statusCpy
+		mqttSrc = &v1alpha1.MQTTSource{
+			ObjectMeta: mqttSrc.ObjectMeta,
+			Status:     *statusCpy,
+		}
 
-		// update the status sub-resource
-		_, err := r.sourcesClient.MQTTSources(mqttSrc.Namespace).UpdateStatus(mqttSrc)
+		_, err = r.sourcesClient.MQTTSources(mqttSrc.Namespace).UpdateStatus(mqttSrc)
 		if err != nil {
 			return err
 		}

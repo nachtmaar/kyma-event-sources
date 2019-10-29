@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package controller
+package mqttsource
 
 import (
 	"context"
@@ -30,8 +30,8 @@ import (
 	rt "knative.dev/pkg/reconciler/testing"
 	fakeservingclient "knative.dev/serving/pkg/client/injection/client/fake"
 
-	fakesourcesclient "github.com/antoineco/mqtt-event-source/client/generated/injection/client/fake"
-	. "github.com/antoineco/mqtt-event-source/controller/testing"
+	fakesourcesclient "github.com/antoineco/kyma-event-sources/client/generated/injection/client/fake"
+	. "github.com/antoineco/kyma-event-sources/reconciler/testing"
 )
 
 const (

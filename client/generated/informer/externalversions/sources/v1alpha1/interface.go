@@ -19,7 +19,7 @@ limitations under the License.
 package v1alpha1
 
 import (
-	internalinterfaces "github.com/antoineco/mqtt-event-source/client/generated/informer/externalversions/internalinterfaces"
+	internalinterfaces "github.com/antoineco/kyma-event-sources/client/generated/informer/externalversions/internalinterfaces"
 )
 
 // Interface provides access to all the informers in this group version.

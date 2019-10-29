@@ -1,6 +1,8 @@
-# Knative MQTT event source for Kyma
+# Knative event sources for Kyma
 
-Knative event source for SAP S/4 applications emitting MQTT events. Meant to be used with [Kyma](https://github.com/kyma-project/kyma).
+Available event sources:
+
+* `MQTTSource`: for SAP S/4 applications emitting MQTT events.
 
 ## Running the controller inside a cluster
 
@@ -12,19 +14,19 @@ $ ko apply -f config/
 
 ### Environment setup (performed once)
 
-Create the CustomResourceDefinition for the MQTT event source type, `MQTTSource`.
+Create the CustomResourceDefinitions for event source types.
 
 ```console
-$ kubectl create -f config/300-mqttsource-crd.yaml
+$ kubectl create -f config/ -l kyma-project.io/crd-install=true
 ```
 
-Create the `mqtt-source` system namespace. The controller sources its ConfigMaps from it.
+Create the `kyma-event-sources` system namespace. The controller watches ConfigMaps inside it.
 
 ```console
 $ kubectl create -f config/100-namespace.yaml
 ```
 
-Create ConfigMaps for logging and observability inside the system namespace (`mqtt-source`)
+Create ConfigMaps for logging and observability inside the system namespace (`kyma-event-sources`)
 
 ```console
 $ kubectl create -f config/400-config-logging.yaml
@@ -35,19 +37,19 @@ $ kubectl create -f config/400-config-observability.yaml
 
 Export the following mandatory environment variables:
 
-* `KUBECONFIG`: path to a local kubeconfig file (if different from the default OS location)
-* `SYSTEM_NAMESPACE`: set to "mqtt-source" (see above)
-* `METRICS_DOMAIN`: domain of the exposed Prometheus metrics. Can be set to an arbitrary value (e.g. "kyma/mqtt-event-source")
-* `ADAPTER_IMAGE`: container image of the MQTT server adapter
+* **KUBECONFIG**: path to a local kubeconfig file (if different from the default OS location)
+* **SYSTEM_NAMESPACE**: set to "kyma-event-sources" (see above)
+* **METRICS_DOMAIN**: domain of the exposed Prometheus metrics. Arbitrary value (e.g. "kyma-project.io/event-sources")
+* **MQTT_ADAPTER_IMAGE**: container image of the MQTT server adapter
 
 Build the binary
 
 ```console
-$ make
+$ make cmd/sources-controller
 ```
 
 Run the controller
 
 ```console
-$ ./mqttsource-controller
+$ ./sources-controller
 ```

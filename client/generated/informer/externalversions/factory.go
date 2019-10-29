@@ -23,9 +23,9 @@ import (
 	sync "sync"
 	time "time"
 
-	internalclientset "github.com/antoineco/mqtt-event-source/client/generated/clientset/internalclientset"
-	internalinterfaces "github.com/antoineco/mqtt-event-source/client/generated/informer/externalversions/internalinterfaces"
-	sources "github.com/antoineco/mqtt-event-source/client/generated/informer/externalversions/sources"
+	internalclientset "github.com/antoineco/kyma-event-sources/client/generated/clientset/internalclientset"
+	internalinterfaces "github.com/antoineco/kyma-event-sources/client/generated/informer/externalversions/internalinterfaces"
+	sources "github.com/antoineco/kyma-event-sources/client/generated/informer/externalversions/sources"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"

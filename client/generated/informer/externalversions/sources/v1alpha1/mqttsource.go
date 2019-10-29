@@ -21,10 +21,10 @@ package v1alpha1
 import (
 	time "time"
 
-	sourcesv1alpha1 "github.com/antoineco/mqtt-event-source/apis/sources/v1alpha1"
-	internalclientset "github.com/antoineco/mqtt-event-source/client/generated/clientset/internalclientset"
-	internalinterfaces "github.com/antoineco/mqtt-event-source/client/generated/informer/externalversions/internalinterfaces"
-	v1alpha1 "github.com/antoineco/mqtt-event-source/client/generated/lister/sources/v1alpha1"
+	sourcesv1alpha1 "github.com/antoineco/kyma-event-sources/apis/sources/v1alpha1"
+	internalclientset "github.com/antoineco/kyma-event-sources/client/generated/clientset/internalclientset"
+	internalinterfaces "github.com/antoineco/kyma-event-sources/client/generated/informer/externalversions/internalinterfaces"
+	v1alpha1 "github.com/antoineco/kyma-event-sources/client/generated/lister/sources/v1alpha1"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	watch "k8s.io/apimachinery/pkg/watch"

@@ -21,8 +21,8 @@ package fake
 import (
 	"context"
 
-	fake "github.com/antoineco/mqtt-event-source/client/generated/injection/informers/factory/fake"
-	mqttsource "github.com/antoineco/mqtt-event-source/client/generated/injection/informers/sources/v1alpha1/mqttsource"
+	fake "github.com/antoineco/kyma-event-sources/client/generated/injection/informers/factory/fake"
+	mqttsource "github.com/antoineco/kyma-event-sources/client/generated/injection/informers/sources/v1alpha1/mqttsource"
 	controller "knative.dev/pkg/controller"
 	injection "knative.dev/pkg/injection"
 )

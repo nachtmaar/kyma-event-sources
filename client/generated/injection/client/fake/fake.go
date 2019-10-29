@@ -21,8 +21,8 @@ package fake
 import (
 	"context"
 
-	fake "github.com/antoineco/mqtt-event-source/client/generated/clientset/internalclientset/fake"
-	client "github.com/antoineco/mqtt-event-source/client/generated/injection/client"
+	fake "github.com/antoineco/kyma-event-sources/client/generated/clientset/internalclientset/fake"
+	client "github.com/antoineco/kyma-event-sources/client/generated/injection/client"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/client-go/rest"
 	injection "knative.dev/pkg/injection"
@@ -48,7 +48,7 @@ func Get(ctx context.Context) *fake.Clientset {
 	untyped := ctx.Value(client.Key{})
 	if untyped == nil {
 		logging.FromContext(ctx).Panic(
-			"Unable to fetch github.com/antoineco/mqtt-event-source/client/generated/clientset/internalclientset/fake.Clientset from context.")
+			"Unable to fetch github.com/antoineco/kyma-event-sources/client/generated/clientset/internalclientset/fake.Clientset from context.")
 	}
 	return untyped.(*fake.Clientset)
 }

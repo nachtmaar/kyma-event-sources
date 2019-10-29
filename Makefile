@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-PKG := github.com/antoineco/mqtt-event-source
+PKG := github.com/antoineco/kyma-event-sources
 
 
 cmds := $(wildcard cmd/*)
@@ -30,13 +30,13 @@ $(cmds): vendor
 
 clean:
 	@echo "+ Cleaning"
+	rm -rf bin/
 	rm -f $(notdir $(cmds))
 	@go clean -x -i $(PKG)/cmd/...
 
 vendor: Gopkg.lock
 	@echo '+ Pulling vendored dependencies'
 	@dep ensure -v --vendor-only
-
 
 
 .PHONY: test

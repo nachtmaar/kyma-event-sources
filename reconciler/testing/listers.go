@@ -27,9 +27,9 @@ import (
 	fakeservingclientset "knative.dev/serving/pkg/client/clientset/versioned/fake"
 	servinglistersv1 "knative.dev/serving/pkg/client/listers/serving/v1"
 
-	sourcesv1alpha1 "github.com/antoineco/mqtt-event-source/apis/sources/v1alpha1"
-	fakesourcesclientset "github.com/antoineco/mqtt-event-source/client/generated/clientset/internalclientset/fake"
-	sourceslistersv1alpha1 "github.com/antoineco/mqtt-event-source/client/generated/lister/sources/v1alpha1"
+	sourcesv1alpha1 "github.com/antoineco/kyma-event-sources/apis/sources/v1alpha1"
+	fakesourcesclientset "github.com/antoineco/kyma-event-sources/client/generated/clientset/internalclientset/fake"
+	sourceslistersv1alpha1 "github.com/antoineco/kyma-event-sources/client/generated/lister/sources/v1alpha1"
 )
 
 var clientSetSchemes = []func(*runtime.Scheme) error{

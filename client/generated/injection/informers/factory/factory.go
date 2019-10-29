@@ -21,8 +21,8 @@ package factory
 import (
 	"context"
 
-	externalversions "github.com/antoineco/mqtt-event-source/client/generated/informer/externalversions"
-	client "github.com/antoineco/mqtt-event-source/client/generated/injection/client"
+	externalversions "github.com/antoineco/kyma-event-sources/client/generated/informer/externalversions"
+	client "github.com/antoineco/kyma-event-sources/client/generated/injection/client"
 	controller "knative.dev/pkg/controller"
 	injection "knative.dev/pkg/injection"
 	logging "knative.dev/pkg/logging"
@@ -50,7 +50,7 @@ func Get(ctx context.Context) externalversions.SharedInformerFactory {
 	untyped := ctx.Value(Key{})
 	if untyped == nil {
 		logging.FromContext(ctx).Panic(
-			"Unable to fetch github.com/antoineco/mqtt-event-source/client/generated/informer/externalversions.SharedInformerFactory from context.")
+			"Unable to fetch github.com/antoineco/kyma-event-sources/client/generated/informer/externalversions.SharedInformerFactory from context.")
 	}
 	return untyped.(externalversions.SharedInformerFactory)
 }

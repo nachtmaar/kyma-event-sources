@@ -23,7 +23,7 @@ import (
 	"log"
 	"net/http"
 
-	adapter "github.com/antoineco/mqtt-event-source/adapter"
+	adapter "github.com/antoineco/kyma-event-sources/adapter"
 	cloudEvents "github.com/cloudevents/sdk-go/pkg/cloudevents"
 	websocket "github.com/gorilla/websocket"
 )
